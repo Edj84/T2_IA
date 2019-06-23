@@ -7,6 +7,22 @@ def abrirArquivo(filepath):
         wb = load_workbook(filepath)
         return wb.active
         
+def lerPerguntas():
+        # iterate over all rows
+                       
+        for i in range(2, max_row+1):
+                # get particular cell value
+                enunciado = planilha.cell(row = i, column = 2).value
+                classe = planilha.cell(row = i, column = 4).value
+              # print("%s e %s" %(enunciado, classe))
+
+                if enunciado != None:
+                        pergunta = [i, enunciado, classe]       
+                        perguntas.append(pergunta)
+
+                        if classe != None and classe not in classes:
+                                classes.add(classe)
+
 def lematizar(texto):
         return cogroo.lemmatize(texto)
 
@@ -16,25 +32,8 @@ def analisar(texto):
 def imprimirTokens(texto):
         print (texto.sentences[0].tokens)
 
-def lerPerguntas():
-        # iterate over all rows
-                       
-        for i in range(2, max_row+1):
-                # get particular cell value
-                id = planilha.cell(row = i, column = 1)    
-                enunciado = planilha.cell(row = i, column = 2).value
-                classe = planilha.cell(row = i, column = 4).value
-                print("%s e %s" %(enunciado, classe))
-                if enunciado != "None":
-                        pergunta = (i, enunciado, classe)       
-                        perguntas.append(pergunta)
-
-                        if classe not in classes:
-                                classes.add(classe)
-
-
 # set file path
-filepath = "C:/Users/Maica/Desktop/T2 IA/T2_IA/todos.xlsx"
+filepath = "C:/Users/Maica/Desktop/T2IA/T2_IA/corpus.xlsx"
 cogroo = Cogroo.Instance()
 
 classes = set()
@@ -49,10 +48,21 @@ max_column = planilha.max_column
 
 lerPerguntas()
 
-print(len(classes))
-print(len(perguntas))
+aux = analisar("Testando a implementacao")
+print(imprimirTokens(aux))
+##for p in perguntas:
+##        p.append(lematizar(p[1]))
+##       # print(p[3])
+##        
+##for p in perguntas:
+##        morfo = analisar(p[3])
+##        tokens = imprimirTokens(morfo)
+##        p.append(tokens)
+##        print(p[4])
 
-
+print("DONE")
+        
+#print(len(classes))
 
 
 
