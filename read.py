@@ -1,27 +1,29 @@
 # import load_workbook
+from openpyxl import Workbook
 from openpyxl import load_workbook
 from cogroo_interface import Cogroo
 
 def abrirArquivo(filepath):        
-        # load corpus 
         wb = load_workbook(filepath)
         return wb.active
         
 def lerPerguntas():
-        # iterate over all rows
                        
         for i in range(2, max_row+1):
-                # get particular cell value
                 enunciado = planilha.cell(row = i, column = 2).value
                 classe = planilha.cell(row = i, column = 4).value
-              # print("%s e %s" %(enunciado, classe))
-
-                if enunciado != None:
-                        pergunta = [i, enunciado, classe]       
+              
+                if enunciado != None and classe != None:
+                        pergunta = [i-1, enunciado, classe]       
                         perguntas.append(pergunta)
 
-                        if classe != None and classe not in classes:
+                        if classe not in classes:
                                 classes.add(classe)
+                else:
+                        planilha.delete_cols(i)
+
+        wb = Workbook()
+        wb.save(filename = filepath)                                
 
 def lematizar(texto):
         return cogroo.lemmatize(texto)
@@ -29,40 +31,64 @@ def lematizar(texto):
 def analisar(texto):
         return cogroo.analyze(texto)
 
-def imprimirTokens(texto):
-        print (texto.sentences[0].tokens)
+def extrairTokens(texto):
+        return texto.sentences[0].tokens
+
+def classificarPergunta(pergunta):
+        classe = pergunta[2]
+        if classe not in dictDePerguntas.keys():
+                perguntasDaClasse = [pergunta]
+                dictDePerguntas[classe] = perguntasDaClasse
+        else:
+                perguntasDaClasse = dictDePerguntas[classe]
+                perguntasDaClasse.append(pergunta)
 
 # set file path
 filepath = "C:/Users/Maica/Desktop/T2IA/T2_IA/corpus.xlsx"
 cogroo = Cogroo.Instance()
 
+#variáveis globais
 classes = set()
 perguntas = list()
+dictDePerguntas = dict()
 
+#Lendo arquivo
 planilha = abrirArquivo(filepath)
-
-# get max row count
 max_row = planilha.max_row
-# get max column count
 max_column = planilha.max_column
 
+#Lendo perguntas
 lerPerguntas()
+classes.discard("Classes")
 
-aux = analisar("Testando a implementacao")
-print(imprimirTokens(aux))
+#Normalizando e separando as perguntas por classes
 ##for p in perguntas:
 ##        p.append(lematizar(p[1]))
-##       # print(p[3])
-##        
-##for p in perguntas:
 ##        morfo = analisar(p[3])
-##        tokens = imprimirTokens(morfo)
+##        tokens = extrairTokens(morfo)
 ##        p.append(tokens)
-##        print(p[4])
+##        classificarPergunta(p)
+##
+##print(perguntas[0])
+
+#classes = list(classes)
+#list.sort(classes)
+#print (classes)
+#print (dictDePerguntas.keys())
+
+##aux = set(dictDePerguntas.keys())
+##print (aux.difference(classes))
+##print (classes.difference(aux))
+##for c in classes:
+##        print(c)
+##
+##for c in dictDePerguntas.keys():
+##        print(c)
 
 print("DONE")
         
-#print(len(classes))
+
+
 
 
 
