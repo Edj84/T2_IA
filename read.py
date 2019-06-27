@@ -64,9 +64,10 @@ def criarBoW():
                                         tokens[token] = tokens[token] + 1
                 sorted_tokens = sorted(tokens.items(), key=operator.itemgetter(1),reverse=True)
                 for j in range(5):
-                        aux = sorted_tokens[j][0]
-                        if(aux not in listaGeral):
-                                listaGeral.append(aux)
+                        if(j < len(sorted_tokens)):
+                                aux = sorted_tokens[j][0]
+                                if(aux not in listaGeral):
+                                        listaGeral.append(aux)
                         
 def estruturar():
         for i in range(len(perguntas)):
@@ -83,19 +84,7 @@ def estruturar():
                 for index in vector:
                         result[index] = 1
                 perguntas[i].append(result)
-'''
-@attribute P1 integer
-@attribute P2 integer
-@attribute P3 integer
-@attribute P4 integer
-@attribute classe {Conceito,Tarefa}
-@data
-0, 0, 0, 1, Conceito
-1, 0, 1, 0, Tarefa
-0, 0, 0, 1, Conceito
-1, 0, 0, 0, Tarefa
-1, 0, 0, 1, Conceito
-'''
+
 def criarOutput():
         f= open(outpath,"w+")
         f.write("@relation Arquivo \n")
@@ -113,8 +102,8 @@ perguntas = list() #lista com todas as perguntas, suas infos e tokens relevantes
 dictDePerguntas = dict() #dicionario com as chaves sendo as classes, os dados as perguntas
 listaGeral = list() #lista geral dos termos que mais aparecem, BoW
 
-#filepath = os.getcwd()+"/corpus.xlsx" ALTERAR VALOR DEPOIS DE NOVO
-filepath = os.getcwd()+"/dummy.xlsx"
+filepath = os.getcwd()+"/corpus.xlsx"
+
 outpath = os.getcwd()+"/weka_input.arff"
 if(os.path.exists(outpath)):
         os.remove(outpath)
