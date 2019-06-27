@@ -1,3 +1,4 @@
+import os, operator
 from openpyxl import Workbook
 from openpyxl import load_workbook
 from cogroo_interface import Cogroo
@@ -29,7 +30,14 @@ def analisar(texto):
         return cogroo.analyze(texto)
 
 def extrairTokens(texto):
-        return texto.sentences[0].tokens
+        result = list()
+        aux = texto.sentences[0].tokens
+        for i in range (len(aux)):
+                string = str(aux[i])
+                split = string.split('#')
+                if((("adv" in split[1]) or "v-inf" in split[1]) or "prop" in split[1]):
+                        result.append(split[0])
+        return result
 
 def classificarPergunta(pergunta):
 
@@ -42,11 +50,75 @@ def classificarPergunta(pergunta):
                 perguntasDaClasse = dictDePerguntas[classe]
                 perguntasDaClasse.append(pergunta)
 
+def criarBoW():
+        for classe in dictDePerguntas: #pego todas as perguntas de cada classe
+                tokens = dict() #gero um dicionario dos tokens
+                lista = dictDePerguntas[classe]
+                for i in range (len(lista)):
+                        pergunta = lista[i]
+                        pergunta = pergunta[4] #pego os tokens da pergunta atual
+                        for token in pergunta:
+                                if token not in tokens.keys():
+                                        tokens[token] = 1
+                                else:
+                                        tokens[token] = tokens[token] + 1
+                sorted_tokens = sorted(tokens.items(), key=operator.itemgetter(1),reverse=True)
+                for j in range(5):
+                        aux = sorted_tokens[j][0]
+                        if(aux not in listaGeral):
+                                listaGeral.append(aux)
+                        
+def estruturar():
+        for i in range(len(perguntas)):
+                vector = list()
+                aux = perguntas[i]
+                for j in range(len(aux[4])):
+                        palavra = aux[4][j]
+                        for k in range(len(listaGeral)):
+                                if(palavra == listaGeral[k]):
+                                        vector.append(k)
+                result = list()
+                for w in range(len(listaGeral)):
+                        result.append(0)
+                for index in vector:
+                        result[index] = 1
+                perguntas[i].append(result)
+'''
+@attribute P1 integer
+@attribute P2 integer
+@attribute P3 integer
+@attribute P4 integer
+@attribute classe {Conceito,Tarefa}
+@data
+0, 0, 0, 1, Conceito
+1, 0, 1, 0, Tarefa
+0, 0, 0, 1, Conceito
+1, 0, 0, 0, Tarefa
+1, 0, 0, 1, Conceito
+'''
+def criarOutput():
+        f= open(outpath,"w+")
+        f.write("@relation Arquivo \n")
+        for i in range(len(listaGeral)):
+                f.write("@atribute P"+str(i) +" integer"+"\n")
+        f.write("@data \n")
+        for i in range(len(perguntas)):
+                aux = str(perguntas[i][5])
+                aux = aux.strip('[]')
+                f.write(aux+", "+perguntas[i][2] +"\n")
+        f.close()
 #variáveis globais
-classes = set()
-perguntas = list()
-dictDePerguntas = dict()
-filepath = "C:/Users/Maica/Desktop/T2IA/T2_IA/corpus.xlsx"
+classes = set() #lista de todas as classes existentes
+perguntas = list() #lista com todas as perguntas, suas infos e tokens relevantes
+dictDePerguntas = dict() #dicionario com as chaves sendo as classes, os dados as perguntas
+listaGeral = list() #lista geral dos termos que mais aparecem, BoW
+
+#filepath = os.getcwd()+"/corpus.xlsx" ALTERAR VALOR DEPOIS DE NOVO
+filepath = os.getcwd()+"/dummy.xlsx"
+outpath = os.getcwd()+"/weka_input.arff"
+if(os.path.exists(outpath)):
+        os.remove(outpath)
+
 cogroo = Cogroo.Instance()
 
 #Lendo arquivo
@@ -66,19 +138,24 @@ for p in perguntas:
         p.append(tokens)
         classificarPergunta(p)
 
-print (len(classes))
-print (len(dictDePerguntas))
+criarBoW()
+#print(listaGeral)
+estruturar()
 
-print(perguntas[0])
+criarOutput()
+#print (len(classes))
+#print (len(dictDePerguntas))
+
+#print(perguntas[0])
 
 #classes = list(classes)
 #list.sort(classes)
 #print (classes)
 #print (dictDePerguntas.keys())
 
-aux = set(dictDePerguntas.keys())
-print (aux.difference(classes))
-print (classes.difference(aux))
+#aux = set(dictDePerguntas.keys())
+#print (aux.difference(classes))
+#print (classes.difference(aux))
 ##for c in classes:
 ##        print(c)
 
