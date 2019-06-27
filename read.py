@@ -83,13 +83,13 @@ def estruturar():
 
 def criarOutput():
         f= open(outpath,"w+")
-        f.write("@relation Arquivo \n")
+        f.write("@relation Arquivo\n\n")
         for i in range(len(listaGeral)):
-                f.write("@atribute P"+str(i) +" integer"+"\n")
+                f.write("@attribute P"+str(i) +" numeric"+"\n")
         aux = str(classes)
         aux = aux.strip('[]')
-        f.write("@atribute classe "+aux+"\n")
-        f.write("@data \n")
+        f.write("@attribute classe "+aux+"\n")
+        f.write("\n@data\n")
         for i in range(len(perguntas)):
                 aux = str(perguntas[i][5])
                 aux = aux.strip('[]')

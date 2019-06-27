@@ -1,48 +1,50 @@
-@relation Arquivo 
-@atribute P0 integer
-@atribute P1 integer
-@atribute P2 integer
-@atribute P3 integer
-@atribute P4 integer
-@atribute P5 integer
-@atribute P6 integer
-@atribute P7 integer
-@atribute P8 integer
-@atribute P9 integer
-@atribute P10 integer
-@atribute P11 integer
-@atribute P12 integer
-@atribute P13 integer
-@atribute P14 integer
-@atribute P15 integer
-@atribute P16 integer
-@atribute P17 integer
-@atribute P18 integer
-@atribute P19 integer
-@atribute P20 integer
-@atribute P21 integer
-@atribute P22 integer
-@atribute P23 integer
-@atribute P24 integer
-@atribute P25 integer
-@atribute P26 integer
-@atribute P27 integer
-@atribute P28 integer
-@atribute P29 integer
-@atribute P30 integer
-@atribute P31 integer
-@atribute P32 integer
-@atribute P33 integer
-@atribute P34 integer
-@atribute P35 integer
-@atribute P36 integer
-@atribute P37 integer
-@atribute P38 integer
-@atribute P39 integer
-@atribute P40 integer
-@atribute P41 integer
-@atribute classe {'conceitoHiperparametro', 'metodo', 'tarefa', 'historia', 'classificacao', 'aplicacao', 'overfitting', 'nJobs', 'melhoria', 'oobScore', 'conceitoArvore', 'caracteristica', 'pre-processamento', 'randomState', 'conceito', 'desbalanceamento', 'desvantagem', 'nEstimators', 'hiperparametroVelocidade', 'hiperparametroPreditivo', 'usabilidade', 'comparacao', 'minSampleLeaf', 'vantagem', 'maxDepth', 'conceitoBootstrap', 'paradigma', 'conceitoBoosting', 'pos-processamento', 'bagging', 'maxFeatures', 'implementacao', 'hiperparametro', 'diferenca', 'conceitoArvoreDecisao', 'tratamentoDeDados', 'hiperparametros', 'funcionamento', 'parametro'}
-@data 
+@relation Arquivo
+
+@attribute P0 numeric
+@attribute P1 numeric
+@attribute P2 numeric
+@attribute P3 numeric
+@attribute P4 numeric
+@attribute P5 numeric
+@attribute P6 numeric
+@attribute P7 numeric
+@attribute P8 numeric
+@attribute P9 numeric
+@attribute P10 numeric
+@attribute P11 numeric
+@attribute P12 numeric
+@attribute P13 numeric
+@attribute P14 numeric
+@attribute P15 numeric
+@attribute P16 numeric
+@attribute P17 numeric
+@attribute P18 numeric
+@attribute P19 numeric
+@attribute P20 numeric
+@attribute P21 numeric
+@attribute P22 numeric
+@attribute P23 numeric
+@attribute P24 numeric
+@attribute P25 numeric
+@attribute P26 numeric
+@attribute P27 numeric
+@attribute P28 numeric
+@attribute P29 numeric
+@attribute P30 numeric
+@attribute P31 numeric
+@attribute P32 numeric
+@attribute P33 numeric
+@attribute P34 numeric
+@attribute P35 numeric
+@attribute P36 numeric
+@attribute P37 numeric
+@attribute P38 numeric
+@attribute P39 numeric
+@attribute P40 numeric
+@attribute P41 numeric
+@attribute classe {'caracteristica', 'tratamentoDeDados', 'maxFeatures', 'pre-processamento', 'conceito', 'metodo', 'parametro', 'pos-processamento', 'paradigma', 'diferenca', 'hiperparametroPreditivo', 'maxDepth', 'conceitoArvoreDecisao', 'desvantagem', 'overfitting', 'randomState', 'comparacao', 'historia', 'oobScore', 'conceitoBoosting', 'hiperparametro', 'conceitoArvore', 'usabilidade', 'nEstimators', 'tarefa', 'conceitoBootstrap', 'vantagem', 'minSampleLeaf', 'bagging', 'melhoria', 'aplicacao', 'nJobs', 'funcionamento', 'implementacao', 'desbalanceamento', 'hiperparametros', 'hiperparametroVelocidade', 'conceitoHiperparametro', 'classificacao'}
+
+@data
 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, funcionamento
 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, funcionamento
 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, funcionamento
