@@ -17,11 +17,7 @@ def lerPerguntas():
                         perguntas.append(pergunta)
 
                         if classe not in classes:
-                                classes.add(classe)
-##                else:
-##                        planilha.delete_rows(i)
-##
-##        arquivo.save(filename = "corpus.xlsx")                                
+                                classes.add(classe)                              
 
 def lematizar(texto):
         return cogroo.lemmatize(texto)
@@ -90,6 +86,9 @@ def criarOutput():
         f.write("@relation Arquivo \n")
         for i in range(len(listaGeral)):
                 f.write("@atribute P"+str(i) +" integer"+"\n")
+        aux = str(classes)
+        aux = aux.strip('[]')
+        f.write("@atribute classe "+aux+"\n")
         f.write("@data \n")
         for i in range(len(perguntas)):
                 aux = str(perguntas[i][5])
@@ -128,44 +127,9 @@ for p in perguntas:
         classificarPergunta(p)
 
 criarBoW()
-#print(listaGeral)
+
 estruturar()
 
 criarOutput()
-#print (len(classes))
-#print (len(dictDePerguntas))
-
-#print(perguntas[0])
-
-#classes = list(classes)
-#list.sort(classes)
-#print (classes)
-#print (dictDePerguntas.keys())
-
-#aux = set(dictDePerguntas.keys())
-#print (aux.difference(classes))
-#print (classes.difference(aux))
-##for c in classes:
-##        print(c)
-
-##for c in dictDePerguntas.keys():
-##        print(c)
 
 print("DONE")
-        
-
-
-
-
-
-
-
-
-
-# get b1 cell value
-# b1 = sheet['B1']
-# get b2 cell value
-# b2 = sheet['B2']
-# get b3 cell value
-# b3 = sheet.cell(row = 3, column = 2)
-# print b1, b2 and b3
