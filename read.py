@@ -127,7 +127,11 @@ for p in perguntas:
         classificarPergunta(p)
 
 criarBoW()
-print(listaGeral)
+
+list = listaGeral.sort()
+
+for p in list:
+        print(p)
 
 estruturar()
 
