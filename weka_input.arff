@@ -42,7 +42,7 @@
 @attribute P39 numeric
 @attribute P40 numeric
 @attribute P41 numeric
-@attribute classe {'caracteristica', 'tratamentoDeDados', 'maxFeatures', 'pre-processamento', 'conceito', 'metodo', 'parametro', 'pos-processamento', 'paradigma', 'diferenca', 'hiperparametroPreditivo', 'maxDepth', 'conceitoArvoreDecisao', 'desvantagem', 'overfitting', 'randomState', 'comparacao', 'historia', 'oobScore', 'conceitoBoosting', 'hiperparametro', 'conceitoArvore', 'usabilidade', 'nEstimators', 'tarefa', 'conceitoBootstrap', 'vantagem', 'minSampleLeaf', 'bagging', 'melhoria', 'aplicacao', 'nJobs', 'funcionamento', 'implementacao', 'desbalanceamento', 'hiperparametros', 'hiperparametroVelocidade', 'conceitoHiperparametro', 'classificacao'}
+@attribute classe {'bagging', 'aplicacao', 'maxFeatures', 'historia', 'oobScore', 'overfitting', 'desvantagem', 'hiperparametroVelocidade', 'conceitoBootstrap', 'hiperparametro', 'nJobs', 'vantagem', 'caracteristica', 'conceitoArvore', 'pos-processamento', 'tratamentoDeDados', 'hiperparametros', 'parametro', 'hiperparametroPreditivo', 'conceitoArvoreDecisao', 'maxDepth', 'pre-processamento', 'conceito', 'classificacao', 'conceitoBoosting', 'implementacao', 'funcionamento', 'melhoria', 'desbalanceamento', 'diferenca', 'conceitoHiperparametro', 'metodo', 'comparacao', 'usabilidade', 'randomState', 'tarefa', 'minSampleLeaf', 'nEstimators', 'paradigma'}
 
 @data
 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, funcionamento

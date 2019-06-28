@@ -127,6 +127,7 @@ for p in perguntas:
         classificarPergunta(p)
 
 criarBoW()
+print(listaGeral)
 
 estruturar()
 
